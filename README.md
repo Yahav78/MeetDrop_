@@ -8,11 +8,11 @@ The system is built as a Full-Stack application featuring a responsive User Inte
 ## Team Members
 * Yahav Vituri - 211521554
 * Dolev Atik - 206576555
-* Teddy Boliasny -315995498
+* Teddy Boliasny - 315995498
 * Larry Urevich - 209045301
 * Nave Dan - 319045753
 * Aviad Gabay - 314724436
-* שהן
+
 ## Tech Stack
 * **Frontend:** React.js
 * **Backend:** Node.js / Express
