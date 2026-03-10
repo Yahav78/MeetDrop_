@@ -6,11 +6,13 @@ MeetDrop is a modern web application designed to revolutionize professional netw
 The system is built as a Full-Stack application featuring a responsive User Interface (UI), a robust Backend server, and a secure Database.
 
 ## Team Members
-* Yahav Vituri
-* Dolev Atik
-* Teddy Boliasny
-* Larry
-* Neve
+* Yahav Vituri - 211521554
+* Dolev Atik - 206576555
+* Teddy Boliasny -315995498
+* Larry Urevich - 209045301
+* Nave Dan - 319045753
+* Aviad Gabay - 314724436 
+* שהן
 
 ## Tech Stack
 * **Frontend:** React.js
