@@ -17,3 +17,6 @@ The system is built as a Full-Stack application featuring a responsive User Inte
 * **Frontend:** React.js
 * **Backend:** Node.js / Express
 * **Database:** MongoDB
+
+## Links:
+Jira: https://meetdrop.atlassian.net/
