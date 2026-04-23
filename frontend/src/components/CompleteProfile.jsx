@@ -21,7 +21,11 @@ export default function CompleteProfile({ onLogin }) {
     const [usernameStatus, setUsernameStatus] = useState(null); // 'checking', 'available', 'taken', or null
     const [usernameQuery, setUsernameQuery] = useState('');
 
-    // Debounced Username Check
+    /**
+     * Debounced Username Availability Check.
+     * Prevents excessive API calls by waiting 500ms after the user stops typing
+     * before querying the server to check if the username is available.
+     */
     useEffect(() => {
         const handler = setTimeout(async () => {
             if (usernameQuery.length > 2) {
@@ -51,7 +55,13 @@ export default function CompleteProfile({ onLogin }) {
             setUsernameQuery(value);
         }
     };
-
+    /**
+     * Submits the completed profile data to the backend API.
+     * Utilizes the temporary token stored during Google Auth to authorize the request.
+     * Upon success, clears the temporary token and fully authenticates the user.
+     * * @param {React.FormEvent} e - The form submission event.
+     * @returns {Promise<void>}
+     */
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (usernameStatus === 'taken' || !formData.username) return;

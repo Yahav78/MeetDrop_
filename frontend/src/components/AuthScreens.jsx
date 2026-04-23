@@ -13,7 +13,12 @@ export default function AuthScreens({ onLogin }) {
   });
 
   const handleChange = (e) => setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
-
+  /**
+   * Handles manual user authentication (Login and Registration).
+   * Communicates with the backend API and navigates the user based on their role upon success.
+   * * @param {React.FormEvent} e - The form submission event.
+   * @returns {Promise<void>}
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Use an empty string fallback so Vercel uses the relative '/api' path as configured in vercel.json
@@ -48,7 +53,13 @@ export default function AuthScreens({ onLogin }) {
     }
     setLoading(false);
   };
-
+   /**
+   * Processes successful Google OAuth authentication.
+   * Sends the Google token to the backend for verification. If the profile is incomplete,
+   * stores a temporary token and redirects to the profile setup screen.
+   * * @param {Object} credentialResponse - The response object from Google Login containing the JWT.
+   * @returns {Promise<void>}
+   */
   const handleGoogleSuccess = async (credentialResponse) => {
     setLoading(true);
     // Use an empty string fallback so Vercel uses the relative '/api' path
@@ -63,7 +74,7 @@ export default function AuthScreens({ onLogin }) {
 
       if (res.ok) {
         if (data.requiresProfileSetup) {
-          // Temporarily store token so CompleteProfile can use it, but don't perform full `onLogin` yet.
+          // Temporarily store token so CompleteProfile can use it, but don't perform full 'onLogin' yet.
           localStorage.setItem('tempToken', data.token);
           navigate('/complete-profile', { state: { googleUserData: data.user } });
         } else {
