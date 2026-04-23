@@ -1,11 +1,19 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+/**
+ * Renders the Admin Dashboard interface.
+ * Restricted to users with admin privileges. Handles fetching all users and providing
+ * administrative controls such as user deletion.
+ */
 export default function AdminDashboard() {
    const [users, setUsers] = useState([]);
    const [loading, setLoading] = useState(true);
    const navigate = useNavigate();
-
+   /**
+    * Fetches the complete list of users from the admin API endpoint.
+    * Includes the JWT token in the Authorization header to verify admin status.
+    * Redirects unauthorized users back to the home page.
+    */
    useEffect(() => {
       const fetchUsers = async () => {
          try {
@@ -33,7 +41,13 @@ export default function AdminDashboard() {
       localStorage.removeItem('user');
       window.location.href = '/login';
    };
-
+   /**
+    * Deletes a user permanently from the system database.
+    * Requires user confirmation before execution. Removes the user from local state
+    * immediately upon success to avoid unnecessary network requests.
+    * @param {string} userId - The unique identifier of the user to delete.
+    * @param {string} username - The display name of the user (used for confirmation prompt).
+    */
    const handleDeleteUser = async (userId, username) => {
       if (!window.confirm(`Are you sure you want to permanently delete user @${username}?`)) return;
 

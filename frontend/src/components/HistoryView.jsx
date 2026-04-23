@@ -7,7 +7,11 @@ export default function HistoryView({ user, onUpdate }) {
   const [loading, setLoading] = useState(true);
   const [selectedUser, setSelectedUser] = useState(null);
   const navigate = useNavigate();
-
+  /**
+   * Fetches the connection history for the current user from the backend API.
+   * Sorts the retrieved connections so that users marked as "favorites" appear at the top.
+   * Handles state updates for loading and rendering the history list.
+   */
   useEffect(() => {
     if (!user) return;
     const fetchHistory = async () => {
@@ -31,7 +35,13 @@ export default function HistoryView({ user, onUpdate }) {
     };
     fetchHistory();
   }, [user]);
-
+  /**
+   * Toggles the "favorite" status of a connection.
+   * Sends a POST or DELETE request to the backend API depending on current status.
+   * Prevents event propagation to avoid triggering the card click handler.
+   * @param {Event} e - The click event.
+   * @param {string} targetId - The ID of the user being favorited/unfavorited.
+   */
   const toggleFavorite = async (e, targetId) => {
     e.stopPropagation(); // prevent card click
     const isFav = user.favorites?.includes(targetId);
@@ -47,7 +57,13 @@ export default function HistoryView({ user, onUpdate }) {
       console.error('Failed to toggle favorite', err);
     }
   };
-
+  /**
+   * Hides a connection from the user's history list permanently.
+   * Prompts the user for confirmation before sending a POST request to the API.
+   * Upon success, removes the target user from the local state array.
+   * @param {Event} e - The click event.
+   * @param {string} targetId - The ID of the user to be hidden.
+   */
   const hideConnection = async (e, targetId) => {
     e.stopPropagation();
     if (!window.confirm("Are you sure you want to permanently hide this connection?")) return;
