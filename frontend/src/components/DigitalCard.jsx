@@ -1,3 +1,12 @@
+/**
+ * Renders a visual representation of a user's professional profile as a "Digital Card".
+ * Displays core business logic data including name, job title, bio, and social links.
+ * Used primarily to display the result of a successful connection match.
+ *
+ * @param {Object} props.user - The user data object retrieved from the database.
+ * @param {Function} props.onReset - Callback function to reset the view and start a new connection search.
+ * @returns {JSX.Element|null} The Digital Card component or null if no user is provided.
+ */
 export default function DigitalCard({ user, onReset }) {
   if (!user) return null;
 
