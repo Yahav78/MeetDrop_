@@ -20,4 +20,4 @@ The system is built as a Full-Stack application featuring a responsive User Inte
 
 ## Links:
 * [Jira](https://meetdrop.atlassian.net/)
-* [App](https://github.com/Yahav78/MeetDrop_)
+* [App](meetdrop-app-pearl.vercel.app)
