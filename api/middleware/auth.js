@@ -37,3 +37,5 @@ const isAdmin = async (req, res, next) => {
 };
 
 module.exports = { isAuthenticated, isAdmin };
+
+//fix1
