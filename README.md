@@ -1,72 +1,95 @@
-# MeetDrop 
+# 🚀 MeetDrop
 
-## About The Project
-MeetDrop is a modern web application designed to revolutionize professional networking. In the digital age, exchanging physical business cards is outdated and inefficient. MeetDrop provides a centralized, seamless platform for users to create a digital network identity, share professional details, and manage their interaction history and favorites all in one place. 
+## 🌟 About The Project
+**MeetDrop** is a modern web application designed to revolutionize professional networking. 🤝💼
 
-The system is built as a Full-Stack application featuring a responsive User Interface (UI), a robust Backend server, and a secure Database.
+In today’s digital age, exchanging physical business cards is outdated and inefficient. 📇❌  
+MeetDrop provides a centralized and seamless platform where users can create their **digital networking identity**, share professional details, and manage their interaction history and favorites — all in one place. 🌐✨
 
-## Team Members
-* Yahav Vituri - 211521554 - Lead Developer
-* Dolev Atik - 206576555 - Product Owner
-* Teddy Boliasny - 315995498 - Scrum Master
-* Larry Urevich - 209045301 - Fullstack Developer
-* Nave Dan - 319045753 - QA
-* Aviad Gabay - 314724436 - Devops
+The system is built as a **Full-Stack application** featuring:
+- 🎨 Responsive User Interface (UI)
+- ⚙️ Robust Backend Server
+- 🔒 Secure Database
 
-## Tech Stack Details
-**Frontend:**
-* React.js (Bootstrapped with Vite for optimized builds)
-* React Router DOM (Client-side routing)
-* CSS3 / HTML5
+---
 
-**Backend & Security:**
-* Node.js & Express.js (RESTful API architecture)
-* JSON Web Tokens (JWT) for stateless authentication
-* Bcrypt for password hashing
+## 👨‍💻 Team Members
+- 👨‍💻 **Yahav Vituri** – 211521554 – Lead Developer  
+- 📌 **Dolev Atik** – 206576555 – Product Owner  
+- 📋 **Teddy Boliasny** – 315995498 – Scrum Master  
+- 💻 **Larry Urevich** – 209045301 – Fullstack Developer  
+- 🧪 **Nave Dan** – 319045753 – QA  
+- ☁️ **Aviad Gabay** – 314724436 – DevOps  
 
-**Database & Deployment:**
-* MongoDB & Mongoose (Object Data Modeling)
-* Vercel (CI/CD Automated Deployment)
+---
 
-## Environment Variables
-To run this project locally, you will need to add the following environment variables to your `.env` files.
+## 🛠️ Tech Stack Details
 
-**Backend (`/api/.env`):**
-* `MONGO_URI` - Your MongoDB connection string.
-* `JWT_SECRET` - A secret key for signing JSON Web Tokens.
-* `PORT` - The port the server will run on (e.g., 5000).
+### 🎨 Frontend
+- ⚛️ React.js *(Bootstrapped with Vite for optimized builds)*  
+- 🧭 React Router DOM *(Client-side routing)*  
+- 🎨 CSS3 / HTML5  
 
-**Frontend (`/frontend/.env`):**
-* `VITE_API_URL` - The URL of the backend server (e.g., `http://localhost:5000`).
+### ⚙️ Backend & Security
+- 🟢 Node.js & Express.js *(RESTful API architecture)*  
+- 🔐 JSON Web Tokens (JWT) *(Stateless authentication)*  
+- 🔒 Bcrypt *(Password hashing)*  
 
-## Installation Guide
-Follow these steps to set up the project locally.
+### 🗄️ Database & Deployment
+- 🍃 MongoDB & Mongoose *(Object Data Modeling)*  
+- ▲ Vercel *(CI/CD Automated Deployment)*  
 
-### 1. Prerequisites
-Ensure you have [Node.js](https://nodejs.org/) installed and access to a MongoDB cluster.
+---
 
-### 2. Clone the Repository
-git clone [https://github.com/MeetDrop/MeetDrop_.git](https://github.com/MeetDrop/MeetDrop_.git)
+## 🔑 Environment Variables
+
+To run this project locally, add the following variables to your `.env` files.
+
+### ⚙️ Backend (`/api/.env`)
+- `MONGO_URI` – Your MongoDB connection string 🍃  
+- `JWT_SECRET` – Secret key for signing JWT tokens 🔐  
+- `PORT` – Server port (e.g. `5000`) 🌐  
+
+### 🎨 Frontend (`/frontend/.env`)
+- `VITE_API_URL` – Backend server URL (e.g. `http://localhost:5000`) 🔗  
+
+---
+
+## 📥 Installation Guide
+
+### 1️⃣ Prerequisites
+Make sure you have the following installed:
+- 🟢 Node.js  
+- 🍃 MongoDB Cluster  
+
+### 2️⃣ Clone the Repository
+```bash
+git clone https://github.com/MeetDrop/MeetDrop_.git
 cd MeetDrop_
+```
 
-### 3. Backend Setup
-Navigate to the API directory, install dependencies, and start the server:
+### 3️⃣ Backend Setup
+```bash
 cd api
 npm install
-#### Ensure your .env file is set up here
 npm run dev
-
-### 4. Frontend Setup
-Open a new terminal, navigate to the frontend directory, install dependencies, and start the Vite development server:
+```
+⚠️ Ensure your .env file is configured first.
+### 4️⃣ Frontend Setup
+```bash
 cd frontend
 npm install
-#### Ensure your .env file is set up here
 npm run dev
+```
+⚠️ Ensure your .env file is configured first.
 
-Links
-Project Management: https://meetdrop.atlassian.net/jira/software/projects/MD/boards/1
+🔗 Links
+📊 Project Management:
+https://meetdrop.atlassian.net/jira/software/projects/MD/boards/1
+🌍 Live Application:
+https://meetdrop-app-pearl.vercel.app/
 
-Live Application: [meetdrop-app-pearl.vercel.app](https://meetdrop-app-pearl.vercel.app/)
+📸 Preview
+<img width="1600" height="416" alt="image" src="https://github.com/user-attachments/assets/97ff482f-db4b-42f2-92d4-80d960317809" />
 
-<img width="1600" height="416" alt="WhatsApp Image 2026-04-24 at 14 45 47" src="https://github.com/user-attachments/assets/fbe5f0b6-c240-47ff-a44a-2bb3a9afd606" />
-
+גככג
