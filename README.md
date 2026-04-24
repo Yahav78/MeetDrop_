@@ -48,10 +48,10 @@ To run this project locally, add the following variables to your `.env` files.
 ### ⚙️ Backend (`/api/.env`)
 - `MONGO_URI` – Your MongoDB connection string 🍃  
 - `JWT_SECRET` – Secret key for signing JWT tokens 🔐  
-- `PORT` – Server port (e.g. `5173`) 🌐  
+- `PORT` – Server port (e.g. `(http://localhost:5000)`) 🌐  
 
 ### 🎨 Frontend (`/frontend/.env`)
-- `VITE_API_URL` – Backend server URL (e.g. `http://localhost:5000`) 🔗  
+- `PORT` – Server port (e.g. `(http://localhost:5173)`) 🌐 
 <img width="1600" height="416" alt="image" src="https://github.com/user-attachments/assets/97ff482f-db4b-42f2-92d4-80d960317809" />
 ---
 
