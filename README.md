@@ -1,5 +1,8 @@
 # 🚀 MeetDrop
 
+## 📸 Preview
+<img width="1029" height="499" alt="image" src="https://github.com/user-attachments/assets/5b49933c-9b52-4a77-b4f1-8db1104a6e10" />
+
 ## 🌟 About The Project
 **MeetDrop** is a modern web application designed to revolutionize professional networking. 🤝💼
 
@@ -87,8 +90,7 @@ https://meetdrop.atlassian.net/jira/software/projects/MD/boards/1
 ### 🌍 Live Application:
 https://meetdrop-app-pearl.vercel.app/
 
-## 📸 Preview
-<img width="1029" height="499" alt="image" src="https://github.com/user-attachments/assets/5b49933c-9b52-4a77-b4f1-8db1104a6e10" />
+
 
 
 
