@@ -83,7 +83,7 @@ npm run dev
 ```
 ⚠️ Ensure your .env file is configured first.
 
-##🔗 Links
+## 🔗 Links
 ### 📊 Project Management:
 https://meetdrop.atlassian.net/jira/software/projects/MD/boards/1
 ### 🌍 Live Application:
