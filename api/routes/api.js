@@ -31,7 +31,14 @@ router.put('/users/:id', async (req, res) => {
   }
 });
 
-// GET /api/users/:id/history - Get Connection History
+/**
+ * @route GET /api/users/:id/history
+ * @description Retrieves the connection history for a specific user.
+ * @security Requires valid JWT Bearer token. Implements ownership validation 
+ * to ensure the requesting user ID matches the target parameters (Prevents IDOR vulnerabilities).
+ * @param {string} req.params.id - The target user's ID.
+ * @returns {Array} Array of user objects representing connection history.
+ */
 router.get('/users/:id/history', async (req, res) => {
   try {
     const userId = req.params.id;
@@ -126,7 +133,11 @@ router.post('/match', async (req, res) => {
   await handleMatchRequest(userId, lat, lon, req, res);
 });
 
-// GET /api/admin/users - Get All Users for Admin Dashboard
+/**
+ * @route GET /api/admin/users
+ * @description Fetches all users for the admin dashboard.
+ * @security HIGH. Requires valid JWT and Admin role verification via isAuthenticated and isAdmin middleware.
+ */
 router.get('/admin/users', isAuthenticated, isAdmin, async (req, res) => {
   try {
     const users = await User.find({}).select('-password').sort({ _id: -1 });
@@ -136,7 +147,15 @@ router.get('/admin/users', isAuthenticated, isAdmin, async (req, res) => {
   }
 });
 
-// DELETE /api/admin/users/:id - Delete a user
+/**
+ * @route DELETE /api/admin/users/:id
+ * @description Permanently deletes a user from the system and cascades the deletion 
+ * to remove them from other users' favorites arrays.
+ * @security HIGH. Requires Admin privileges. Endpoint is strictly protected by RBAC 
+ * (Role-Based Access Control) middleware to prevent unauthorized data manipulation.
+ * @param {string} req.params.id - The ID of the user to be deleted.
+ * @returns {Object} JSON response indicating success or unauthorized access error.
+ */
 router.delete('/admin/users/:id', isAuthenticated, isAdmin, async (req, res) => {
   try {
     const userId = req.params.id;
