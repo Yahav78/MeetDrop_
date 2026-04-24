@@ -8,7 +8,7 @@
 ## 🌟 About The Project
 **MeetDrop** is a modern web application designed to revolutionize professional networking. 🤝💼
 
-** In today’s digital age, exchanging physical business cards is outdated and inefficient.   
+In today’s digital age, exchanging physical business cards is outdated and inefficient.   
 MeetDrop provides a centralized and seamless platform where users can create their **digital networking identity**, share professional details, and manage their interaction history and favorites — all in one place. 
 ---
 ## 👨‍💻 Team Members
