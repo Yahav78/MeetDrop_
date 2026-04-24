@@ -1,21 +1,17 @@
 # 🚀 MeetDrop
-
 ## 📸 Preview
 <img width="1029" height="499" alt="image" src="https://github.com/user-attachments/assets/5b49933c-9b52-4a77-b4f1-8db1104a6e10" />
+
+## 🔗 Links
+### 📊 Project Management: https://meetdrop.atlassian.net/jira/software/projects/MD/boards/1
+### 🌍 Live Application: https://meetdrop-app-pearl.vercel.app/
 
 ## 🌟 About The Project
 **MeetDrop** is a modern web application designed to revolutionize professional networking. 🤝💼
 
 In today’s digital age, exchanging physical business cards is outdated and inefficient. 📇❌  
 MeetDrop provides a centralized and seamless platform where users can create their **digital networking identity**, share professional details, and manage their interaction history and favorites — all in one place. 🌐✨
-
-The system is built as a **Full-Stack application** featuring:
-- 🎨 Responsive User Interface (UI)
-- ⚙️ Robust Backend Server
-- 🔒 Secure Database
-
 ---
-
 ## 👨‍💻 Team Members
 - 👨‍💻 **Yahav Vituri** – 211521554 – Lead Developer  
 - 📌 **Dolev Atik** – 206576555 – Product Owner  
@@ -23,7 +19,6 @@ The system is built as a **Full-Stack application** featuring:
 - 💻 **Larry Urevich** – 209045301 – Fullstack Developer  
 - 🧪 **Nave Dan** – 319045753 – QA  
 - ☁️ **Aviad Gabay** – 314724436 – DevOps  
-
 ---
 
 ## 🛠️ Tech Stack Details
@@ -41,7 +36,11 @@ The system is built as a **Full-Stack application** featuring:
 ### 🗄️ Database & Deployment
 - 🍃 MongoDB & Mongoose *(Object Data Modeling)*  
 - ▲ Vercel *(CI/CD Automated Deployment)*  
-
+---
+The system is built as a **Full-Stack application** featuring:
+- 🎨 Responsive User Interface (UI)
+- ⚙️ Robust Backend Server
+- 🔒 Secure Database
 ---
 
 ## 🔑 Environment Variables
@@ -84,11 +83,7 @@ npm install
 npm run dev
 ```
 
-## 🔗 Links
-### 📊 Project Management:
-https://meetdrop.atlassian.net/jira/software/projects/MD/boards/1
-### 🌍 Live Application:
-https://meetdrop-app-pearl.vercel.app/
+
 
 
 
