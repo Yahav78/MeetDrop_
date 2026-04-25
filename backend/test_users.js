@@ -10,9 +10,10 @@ async function testUsersAPI() {
       method: 'POST', headers,
       body: JSON.stringify({ 
         username, 
+        firstName: "QA",
+        lastName: `User_${userKey}`,
         email: `${username}@test.com`, 
-        password: 'password123', 
-        name: `QA ${userKey}` 
+        password: 'password123'
       })
     });
     
