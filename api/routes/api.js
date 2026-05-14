@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const Connection = require('../models/Connection');
+const Event = require('../models/Event');
+const bcrypt = require('bcryptjs');
 const { handleMatchRequest } = require('../services/matchmaker');
 const { isAuthenticated, isAdmin } = require('../middleware/auth');
 
@@ -164,6 +166,134 @@ router.delete('/admin/users/:id', isAuthenticated, isAdmin, async (req, res) => 
   } catch (err) {
     console.error('Delete User Error:', err);
     res.status(500).json({ error: 'Server error deleting user' });
+  }
+});
+
+// POST /api/admin/organizers - Create an Event Organizer
+router.post('/admin/organizers', isAuthenticated, isAdmin, async (req, res) => {
+  try {
+    const { username, email, password, firstName, lastName } = req.body;
+    let user = await User.findOne({ $or: [{ email }, { username }] });
+    if (user) {
+      return res.status(400).json({ error: 'User already exists' });
+    }
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+    
+    user = new User({
+      username, email, password: hashedPassword, firstName, lastName, role: 'organizer', isProfileComplete: true
+    });
+    await user.save();
+    res.status(201).json({ message: 'Organizer created successfully', user });
+  } catch (error) {
+    console.error('Create Organizer Error:', error);
+    res.status(500).json({ error: 'Server error creating organizer' });
+  }
+});
+
+// --- EVENTS ---
+
+// POST /api/events - Create an event
+router.post('/events', isAuthenticated, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+    if (user.role !== 'organizer') return res.status(403).json({ error: 'Only organizers can create events' });
+    
+    const { name, city, address, maxCapacity } = req.body;
+    
+    // Default coordinates for some major Israeli cities for distance sorting
+    const cityCoords = {
+      'Tel Aviv': { lat: 32.0853, lon: 34.7818 },
+      'Jerusalem': { lat: 31.7683, lon: 35.2137 },
+      'Haifa': { lat: 32.7940, lon: 34.9896 },
+      'Beersheba': { lat: 31.2520, lon: 34.7915 },
+      'Netanya': { lat: 32.3215, lon: 34.8532 },
+      'Ashdod': { lat: 31.8044, lon: 34.6553 },
+      'Petah Tikva': { lat: 32.0840, lon: 34.8878 },
+      'Rishon LeZion': { lat: 31.9730, lon: 34.7925 }
+    };
+    
+    const coords = cityCoords[city] || { lat: 32.0853, lon: 34.7818 }; // Default to TA if not found
+
+    const event = new Event({
+      name, 
+      locationText: `${address}, ${city}`, 
+      lat: coords.lat, 
+      lon: coords.lon, 
+      maxCapacity, 
+      organizerId: user._id, 
+      connectedUsers: []
+    });
+    await event.save();
+    res.status(201).json(event);
+  } catch (err) {
+    console.error('Create Event Error:', err);
+    res.status(500).json({ error: 'Server error creating event' });
+  }
+});
+
+// DELETE /api/events/:id - Delete an event (Organizer only)
+router.delete('/events/:id', isAuthenticated, async (req, res) => {
+  try {
+    const event = await Event.findById(req.params.id);
+    if (!event) return res.status(404).json({ error: 'Event not found' });
+    
+    if (event.organizerId.toString() !== req.user.id) {
+      return res.status(403).json({ error: 'Not authorized to delete this event' });
+    }
+    
+    await Event.findByIdAndDelete(req.params.id);
+    res.json({ message: 'Event deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ error: 'Server error deleting event' });
+  }
+});
+
+// GET /api/events/organizer - Get events for logged-in organizer
+router.get('/events/organizer', isAuthenticated, async (req, res) => {
+  try {
+    const events = await Event.find({ organizerId: req.user.id })
+      .populate('connectedUsers', '-password')
+      .sort({ timestamp: -1 });
+    res.json(events);
+  } catch (err) {
+    res.status(500).json({ error: 'Server error fetching events' });
+  }
+});
+
+// GET /api/events - Get all events (for regular users)
+router.get('/events', isAuthenticated, async (req, res) => {
+  try {
+    const events = await Event.find().populate('organizerId', 'firstName lastName');
+    res.json(events);
+  } catch (err) {
+    res.status(500).json({ error: 'Server error fetching events' });
+  }
+});
+
+// POST /api/events/:id/connect - User connects directly to an event
+router.post('/events/:id/connect', isAuthenticated, async (req, res) => {
+  try {
+    const eventId = req.params.id;
+    const userId = req.user.id;
+    
+    const event = await Event.findById(eventId);
+    if (!event) return res.status(404).json({ error: 'Event not found' });
+    
+    if (event.connectedUsers.length >= event.maxCapacity) {
+      return res.status(400).json({ error: 'Event is fully booked' });
+    }
+    
+    if (event.connectedUsers.includes(userId)) {
+      return res.status(400).json({ error: 'Already connected to this event' });
+    }
+    
+    event.connectedUsers.push(userId);
+    await event.save();
+    
+    res.json(event);
+  } catch (err) {
+    res.status(500).json({ error: 'Server error connecting to event' });
   }
 });
 
