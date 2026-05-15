@@ -1,19 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-/**
- * Renders the Admin Dashboard interface.
- * Restricted to users with admin privileges. Handles fetching all users and providing
- * administrative controls such as user deletion.
- */
+
 export default function AdminDashboard() {
    const [users, setUsers] = useState([]);
    const [loading, setLoading] = useState(true);
+   const [orgForm, setOrgForm] = useState({ username: '', email: '', password: '', firstName: '', lastName: '' });
+   const [orgLoading, setOrgLoading] = useState(false);
    const navigate = useNavigate();
-   /**
-    * Fetches the complete list of users from the admin API endpoint.
-    * Includes the JWT token in the Authorization header to verify admin status.
-    * Redirects unauthorized users back to the home page.
-    */
+
    useEffect(() => {
       const fetchUsers = async () => {
          try {
@@ -41,13 +35,7 @@ export default function AdminDashboard() {
       localStorage.removeItem('user');
       window.location.href = '/login';
    };
-   /**
-    * Deletes a user permanently from the system database.
-    * Requires user confirmation before execution. Removes the user from local state
-    * immediately upon success to avoid unnecessary network requests.
-    * @param {string} userId - The unique identifier of the user to delete.
-    * @param {string} username - The display name of the user (used for confirmation prompt).
-    */
+
    const handleDeleteUser = async (userId, username) => {
       if (!window.confirm(`Are you sure you want to permanently delete user @${username}?`)) return;
 
@@ -68,6 +56,34 @@ export default function AdminDashboard() {
          console.error('Failed to delete user', err);
          alert('Network error when attempting deletion');
       }
+   };
+
+   const handleCreateOrganizer = async (e) => {
+      e.preventDefault();
+      setOrgLoading(true);
+      try {
+         const token = localStorage.getItem('token');
+         const res = await fetch('/api/admin/organizers', {
+            method: 'POST',
+            headers: { 
+               'Content-Type': 'application/json',
+               'Authorization': `Bearer ${token}` 
+            },
+            body: JSON.stringify(orgForm)
+         });
+         const data = await res.json();
+         if (res.ok) {
+            alert('Event Organizer created successfully!');
+            setOrgForm({ username: '', email: '', password: '', firstName: '', lastName: '' });
+            setUsers([data.user, ...users]);
+         } else {
+            alert(data.error || 'Failed to create organizer');
+         }
+      } catch (err) {
+         console.error('Failed to create organizer', err);
+         alert('Network error');
+      }
+      setOrgLoading(false);
    };
 
    if (loading) return <div className="loading-title" style={{ marginTop: '5rem' }}>Loading Node Infrastructure...</div>;
@@ -116,7 +132,38 @@ export default function AdminDashboard() {
                   </tbody>
                </table>
             </div>
-         </div>
-      </div>
+
+             <div style={{ marginTop: '3rem', paddingTop: '2rem', borderTop: '1px solid var(--slate-700)' }}>
+                <h3 className="form-title" style={{ textAlign: 'left', margin: '0 0 1rem 0', fontSize: '1.25rem' }}>Create Event Organizer</h3>
+                <form onSubmit={handleCreateOrganizer} className="form-group-list" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                   <div className="form-group">
+                      <label>First Name</label>
+                      <input required className="form-input" value={orgForm.firstName} onChange={(e) => setOrgForm({...orgForm, firstName: e.target.value})} />
+                   </div>
+                   <div className="form-group">
+                      <label>Last Name</label>
+                      <input required className="form-input" value={orgForm.lastName} onChange={(e) => setOrgForm({...orgForm, lastName: e.target.value})} />
+                   </div>
+                   <div className="form-group">
+                      <label>Email</label>
+                      <input required type="email" className="form-input" value={orgForm.email} onChange={(e) => setOrgForm({...orgForm, email: e.target.value})} />
+                   </div>
+                   <div className="form-group">
+                      <label>Username</label>
+                      <input required className="form-input" value={orgForm.username} onChange={(e) => setOrgForm({...orgForm, username: e.target.value})} />
+                   </div>
+                   <div className="form-group" style={{ gridColumn: '1 / -1' }}>
+                      <label>Password</label>
+                      <input required type="password" className="form-input" value={orgForm.password} onChange={(e) => setOrgForm({...orgForm, password: e.target.value})} />
+                   </div>
+                   <div style={{ gridColumn: '1 / -1' }}>
+                      <button disabled={orgLoading} type="submit" className="btn-primary" style={{ marginTop: '1rem' }}>
+                         {orgLoading ? 'Creating...' : 'Create Organizer Account'}
+                      </button>
+                   </div>
+                </form>
+             </div>
+          </div>
+       </div>
    );
 }
