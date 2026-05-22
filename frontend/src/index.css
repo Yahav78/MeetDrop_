@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+:root {
+  --bg-dark: #f1f5f9;
+  --bg-card: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --border-color: rgba(0, 0, 0, 0.05);
+}
+
+.dark {
+  --bg-dark: #0f172a;
+  --bg-card: #1e293b;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --border-color: rgba(255, 255, 255, 0.05);
+}
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  
+  --color-brand-50: #f0f9ff;
+  --color-brand-100: #e0f2fe;
+  --color-brand-200: #bae6fd;
+  --color-brand-300: #7dd3fc;
+  --color-brand-400: #38bdf8;
+  --color-brand-500: #0ea5e9;
+  --color-brand-600: #0284c7;
+  --color-brand-700: #0369a1;
+  --color-brand-800: #075985;
+  --color-brand-900: #0c4a6e;
+}
+
+@layer base {
+  body {
+    @apply bg-[var(--bg-dark)] text-[var(--text-primary)] font-sans transition-colors duration-300;
+  }
+  
+  /* Titles and labels that were hardcoded to white now use the theme variable */
+  h1, h2, h3, h4, .title-text {
+    @apply text-[var(--text-primary)] transition-colors duration-300;
+  }
+
+  /* Force override for legacy text-white on titles in light mode */
+  .text-white:not(button *, .bg-brand-500 *, .bg-slate-800 *, .bg-slate-900 *) {
+    color: var(--text-primary) !important;
+  }
+
+  input, textarea, select {
+    color: var(--text-primary) !important;
+    background-color: var(--bg-card) !important;
+  }
+
+  .dark input, .dark textarea, .dark select {
+    background-color: rgba(15, 23, 42, 0.5) !important;
+  }
+}
+
+/* Glassmorphism utility */
+.glass {
+  @apply bg-[var(--bg-card)] dark:bg-slate-800/50 backdrop-blur-md border border-[var(--border-color)] shadow-xl dark:shadow-none transition-colors duration-300;
+}
+
+
+
+/* Animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
