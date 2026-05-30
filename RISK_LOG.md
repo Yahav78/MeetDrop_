@@ -1,4 +1,4 @@
-# ⚠️ MeetDrop - Project Risk Log (Sprint #1 / MVP)
+# ⚠️ MeetDrop - Project Risk Log (Final / Sprints #1 & #2)
 
 | Risk ID | Jira Ticket | Description | Probability | Impact | Strategy | Status | Mitigation / Action Taken |
 |:---|:---|:---|:---:|:---:|:---|:---:|:---|
@@ -7,6 +7,7 @@
 | **R-03** | `MD-22` | Incomplete API documentation causing Frontend bottlenecks | Medium | Medium | Mitigation | **Closed** | Added JSDoc comments to API routes to prevent "Invisibility" blockers. |
 | **R-04** | `MD-22` | JWT Authentication logic vulnerabilities & UI Error handling | Medium | High | Mitigation | **Closed** | Peer Review (Egoless Programming) between Dev and QA to fix token leaks. |
 | **R-05** | `MD-23` | Missing MVP deadline due to infrastructure crisis | High | High | Acceptance | **Deferred** | **Scope Reduction:** Deferred 15 points of non-essential API routes to Sprint 2 to prioritize "The Golden Path". |
+| **R-NEW-01**| `MD-68` | Missing Final Release Deadline due to Scope Creep | High | High | Mitigation | **Closed** | **Scope Swap:** Deferred 'Could Have' features (Profile Pics, Admin Telemetry) to the backlog to protect the final deadline. |
 
 ---
 
@@ -42,3 +43,8 @@ To address the risk of backend updates breaking the frontend UI and to resolve c
 **Final Update:** As we close Sprint 1 and prepare for the MVP demonstration, all critical infrastructure, integration, and security blockers (R-01 through R-04) have been fully mitigated and verified by QA. The core "Golden Path" is currently stable in the live Vercel production environment.
 
 **Deferred Risk (R-05 | MD-23):** To survive the infrastructure crisis without compromising quality, we executed a deliberate Scope Reduction. The risk of missing the deadline was mitigated for the MVP by deferring 15 story points of non-essential features. This risk ticket (MD-23) is officially transferred to Sprint 2, where the deferred features will be re-estimated and prioritized.
+
+### 5. Final Release Update: Missing Deadline due to Scope Creep (R-NEW-01 | Jira: MD-68)
+**Status:** ✅ Mitigated (Closed)
+**Mitigation Actions Taken:**
+During Sprint 2, the team faced the risk of missing the final application presentation deadline due to uncontrolled scope creep, specifically as UI tasks began competing for time with core features. We managed this risk correctly and decisively by exercising strict scope control. We immediately transferred our "Could Have" tasks—specifically Profile Pictures (MD-62) and the Admin Telemetry Dashboard (MD-51)—back to the backlog. This deliberate scope reduction freed up critical development capacity, ensuring the core Event Management system and the Tailwind UI Overhaul were completed, fully tested, and ready for the final project defense without compromising the release schedule.
