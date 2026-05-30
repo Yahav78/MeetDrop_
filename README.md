@@ -1,5 +1,5 @@
 # 🚀 MeetDrop
-<img width="1029" height="499" alt="image" src="https://github.com/user-attachments/assets/5b49933c-9b52-4a77-b4f1-8db1104a6e10" />
+<img width="1340" height="747" alt="image" src="https://github.com/user-attachments/assets/2f2e2e5a-f0ac-4b3e-8543-89aad3a709d3" />
 
 ## 🔗 Links
 ### 📊 Project Management: https://meetdrop.atlassian.net/jira/software/projects/MD/boards/1
