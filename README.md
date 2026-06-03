@@ -82,7 +82,7 @@ Make sure you have the following installed:
 
 ### 2️⃣ Clone the Repository
 ```bash
-git clone [https://github.com/MeetDrop/MeetDrop_.git](https://github.com/MeetDrop/MeetDrop_.git)
+git clone [https://github.com/Yahav78/MeetDrop_.git](https://github.com/Yahav78/MeetDrop_.git)
 cd MeetDrop_
 ```
 
